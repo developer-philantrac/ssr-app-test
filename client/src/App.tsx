@@ -26,7 +26,7 @@ function App() {
   useEffect(() => {
     if (loggedIn) {
       // Try to load last config from backend
-      fetch('http://localhost:5000/api/last-config')
+      fetch('http://34.173.100.97:5000//api/last-config')
         .then(res => res.json())
         .then(data => {
           if (data.sitemapUrl) setSitemapUrl(data.sitemapUrl)
@@ -47,7 +47,7 @@ function App() {
     setUrls([])
     setCacheStatus({})
     try {
-      const res = await fetch('http://localhost:5000/api/sitemap', {
+      const res = await fetch('http://34.173.100.97:5000/api/sitemap', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sitemapUrl: urlToFetch })
@@ -60,7 +60,7 @@ function App() {
       const statusMap: { [url: string]: string } = {}
       for (const url of data.urls || []) {
         try {
-          const res = await fetch(`http://localhost:5000/prerender?url=${encodeURIComponent(url)}&admin=1`)
+          const res = await fetch(`http://34.173.100.97:5000/prerender?url=${encodeURIComponent(url)}&admin=1`)
           if (res.ok) {
             statusMap[url] = 'Cached'
           } else {
@@ -95,7 +95,7 @@ function App() {
     setStatus('Saving config...')
     setStatusType('info')
     try {
-      const res = await fetch('http://localhost:5000/api/config', {
+      const res = await fetch('http://34.173.100.97:5000/api/config', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sitemapUrl, metaApiBase })
@@ -120,7 +120,7 @@ function App() {
     setUrls([])
     setCacheStatus({})
     try {
-      const res = await fetch('http://localhost:5000/api/sitemap', {
+      const res = await fetch('http://34.173.100.97:5000/api/sitemap', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sitemapUrl })
@@ -141,7 +141,7 @@ function App() {
     setStatus('Prerendering and caching...')
     setStatusType('info')
     try {
-      const res = await fetch('http://localhost:5000/api/prerender', {
+      const res = await fetch('http://34.173.100.97:5000/api/prerender', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ urls, metaApiBase })
@@ -167,7 +167,7 @@ function App() {
     const statusMap: { [url: string]: string } = {}
     for (const url of urls) {
       try {
-        const res = await fetch(`http://localhost:5000/prerender?url=${encodeURIComponent(url)}&admin=1`)
+        const res = await fetch(`http://34.173.100.97:5000/prerender?url=${encodeURIComponent(url)}&admin=1`)
         if (res.ok) {
           statusMap[url] = 'Cached'
         } else {
@@ -188,7 +188,7 @@ function App() {
     setShowModal(true);
     setPageHtml('Loading...');
     try {
-      const res = await fetch(`http://localhost:5000/prerender?url=${encodeURIComponent(url)}&admin=1`);
+      const res = await fetch(`http://34.173.100.97:5000/prerender?url=${encodeURIComponent(url)}&admin=1`);
       const html = await res.text();
       setPageHtml(html);
     } catch (e) {
