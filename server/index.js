@@ -68,9 +68,16 @@ app.post('/api/sitemap', async (req, res) => {
 
 // Helper: Prerender a single URL and inject meta-data
 async function prerenderAndCache(url, metaApiBase) {
-  const browser = await puppeteer.launch({ 
-    headless: false, // Run in non-headless mode for debugging
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    const browser = await puppeteer.launch({
+    executablePath: '/usr/bin/google-chrome',
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--disable-accelerated-2d-canvas',
+      '--disable-gpu',
+      '--headless=new'
+    ]
   });
   const page = await browser.newPage();
 
