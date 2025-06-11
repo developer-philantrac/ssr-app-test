@@ -206,7 +206,11 @@ function isBot(userAgent) {
     /pinterest/i,
     /slackbot/i,
     /vkShare/i,
-    /W3C_Validator/i
+    /W3C_Validator/i,
+    /Lighthouse/i,           // For Lighthouse/PageSpeed Insights
+    /HeadlessChrome/i,       // For headless Chrome
+    /HeadlessChromium/i,     // For headless Chromium (as in your screenshot)
+    /PageSpeed/i             // For PageSpeed Insights
   ];
   return bots.some(bot => bot.test(userAgent));
 }
